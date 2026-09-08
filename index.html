@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joaquín González — Desarrollador full-stack</title>
+<meta name="description" content="Desarrollador full-stack en Santiago de Chile. Java, Spring Boot, React, PostgreSQL y Docker. Dos productos en producción en Geodatos.">
+<meta property="og:title" content="Joaquín González — Desarrollador full-stack">
+<meta property="og:description" content="Dos productos en producción, desplegados de punta a punta. Java, Spring Boot, React, PostgreSQL, Docker.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#0E1C22;
+    --strata:#172C34;
+    --strata-2:#1F3A42;
+    --paper:#E4E6E0;
+    --paper-2:#EDEEE9;
+    --line:#C6CBC3;
+    --ink:#12211F;
+    --muted:#5C6B6B;
+    --muted-on-deep:#93A8A9;
+    --verdigris:#2F8F79;
+    --verdigris-bright:#43B497;
+    --sulfur:#D9A83F;
+    --measure:68ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:"Archivo",system-ui,sans-serif;margin:0;line-height:1.05;letter-spacing:-.02em}
+  a{color:inherit}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+  .wrap{width:min(1120px,92vw);margin:0 auto}
+
+  /* --- nav --- */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(228,230,224,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
+  .nav .who{font-family:"Archivo";font-weight:600;font-size:15px;letter-spacing:-.01em}
+  .nav nav{display:flex;gap:22px;align-items:center}
+  .nav a{font-size:13.5px;text-decoration:none;color:var(--muted);letter-spacing:.02em}
+  .nav a:hover{color:var(--ink)}
+  .nav a.cv{color:var(--ink);border-bottom:1.5px solid var(--verdigris);padding-bottom:1px}
+  @media(max-width:720px){
+    .nav .hide-sm{display:none}
+    .nav nav{gap:16px}
+  }
+  @media(max-width:460px){
+    .nav .wrap{height:auto;padding:9px 0;flex-wrap:wrap}
+    .nav .who{width:100%;font-size:14px}
+    .nav nav{gap:14px;width:100%}
+    .nav a{font-size:12.5px}
+    .eyebrow{font-size:10.5px;letter-spacing:.1em}
+  }
+
+  /* --- hero: el corte --- */
+  .hero{background:var(--deep);color:#EAF0EE;position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;padding:88px 0 0;align-items:start}
+  @media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:36px;padding-top:60px}}
+  .eyebrow{font-family:"IBM Plex Mono";font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--verdigris-bright)}
+  .hero h1{font-size:clamp(46px,7.4vw,84px);font-weight:800;margin:16px 0 0;color:#F3F7F5}
+  .hero .role{font-family:"Archivo";font-weight:500;font-size:clamp(19px,2.4vw,25px);color:var(--verdigris-bright);margin-top:10px;letter-spacing:-.01em}
+  .hero p{color:#C3D2D1;max-width:46ch;margin:22px 0 0;font-size:17px}
+  .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 88px}
+  @media(max-width:860px){.hero .actions{margin-bottom:44px}}
+  .btn{display:inline-block;text-decoration:none;font-size:14.5px;padding:11px 20px;border-radius:2px;transition:transform .15s ease,background .15s ease}
+  .btn-solid{background:var(--verdigris);color:#04120F;font-weight:600}
+  .btn-solid:hover{background:var(--verdigris-bright)}
+  .btn-ghost{border:1px solid #3A5158;color:#D6E3E1}
+  .btn-ghost:hover{border-color:var(--verdigris-bright);color:#fff}
+
+  /* columna estratigráfica del hero */
+  .core{border:1px solid #2A424A;border-radius:2px;background:linear-gradient(180deg,#16292F,#101F26);overflow:hidden}
+  .core-head{display:flex;justify-content:space-between;align-items:baseline;padding:12px 14px;border-bottom:1px solid #2A424A}
+  .core-head span{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-on-deep)}
+  .layer{display:grid;grid-template-columns:52px 1fr;align-items:center;gap:14px;padding:15px 14px;border-bottom:1px solid #223A41;position:relative}
+  .layer:last-child{border-bottom:0}
+  .layer .depth{font-family:"IBM Plex Mono";font-size:11px;color:#6E858A;text-align:right}
+  .layer .name{font-family:"Archivo";font-weight:600;font-size:15.5px;color:#E7EFED}
+  .layer .tech{font-family:"IBM Plex Mono";font-size:11.5px;color:var(--muted-on-deep);margin-top:2px}
+  .layer::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--band,#2F8F79)}
+
+  /* --- secciones --- */
+  section.band{padding:76px 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:34px;flex-wrap:wrap}
+  .sec-head h2{font-size:clamp(26px,3.4vw,36px);font-weight:800}
+  .sec-head .note{font-size:14px;color:var(--muted);max-width:44ch}
+
+  /* trabajo */
+  .job{display:grid;grid-template-columns:200px 1fr;gap:40px}
+  @media(max-width:800px){.job{grid-template-columns:1fr;gap:14px}}
+  .job + .job{margin-top:52px;padding-top:52px;border-top:1px dashed var(--line)}
+  .job .side .co{font-family:"Archivo";font-weight:600;font-size:17px}
+  .job .side .meta{font-family:"IBM Plex Mono";font-size:12px;color:var(--muted);margin-top:6px;line-height:1.7}
+  .job h3{font-size:23px;font-weight:600;margin-bottom:8px}
+  .job .lede{color:var(--muted);max-width:var(--measure)}
+  .facts{list-style:none;padding:0;margin:18px 0 0;max-width:var(--measure)}
+  .facts li{position:relative;padding-left:22px;margin-bottom:9px;font-size:15.5px}
+  .facts li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:1.5px;background:var(--verdigris)}
+  .facts b{font-weight:600}
+  .metrics{display:flex;flex-wrap:wrap;gap:26px;margin-top:22px}
+  .metric .n{font-family:"Archivo";font-weight:800;font-size:27px;letter-spacing:-.02em}
+  .metric .l{font-family:"IBM Plex Mono";font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+
+  /* proyectos */
+  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:22px}
+  .card{background:var(--paper-2);border:1px solid var(--line);border-radius:2px;padding:26px 24px;display:flex;flex-direction:column}
+  .card .tag{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .card h3{font-size:21px;font-weight:600;margin:10px 0 8px}
+  .card p{font-size:15.5px;color:var(--muted);margin:0}
+  .card .why{font-size:14.5px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);color:var(--ink)}
+  .card .why b{font-weight:600}
+  .stack{display:flex;margin-top:20px;border:1px solid var(--line);border-radius:2px;overflow:hidden}
+  .stack div{flex:1;padding:7px 4px;text-align:center;font-family:"IBM Plex Mono";font-size:10.5px;color:#3F4F4E;background:var(--paper);border-right:1px solid var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .stack div:last-child{border-right:0}
+
+  /* motor */
+  .engine{background:var(--strata);color:#E8F0EE;border-bottom:1px solid #24424B}
+  .engine .wrap{padding:76px 0}
+  .engine .sec-head h2{color:#F3F7F5}
+  .engine .sec-head .note{color:var(--muted-on-deep)}
+  .engine .split{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:start}
+  @media(max-width:900px){.engine .split{grid-template-columns:1fr;gap:38px}}
+  .engine p{color:#C6D5D3;max-width:56ch}
+  .problems{list-style:none;padding:0;margin:26px 0 0}
+  .problems li{padding:16px 0;border-top:1px solid #2A484F}
+  .problems .q{font-family:"Archivo";font-weight:600;font-size:16.5px;color:#EAF2F0}
+  .problems .a{font-size:15px;color:#AEC2C1;margin-top:6px;max-width:52ch}
+  .board{border:1px solid #2A484F;border-radius:2px;background:#12262D}
+  .board-head{padding:14px 16px;border-bottom:1px solid #2A484F;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .board-head .t{font-family:"Archivo";font-weight:600;font-size:15px;color:#EAF2F0}
+  .board-head .s{font-family:"IBM Plex Mono";font-size:11px;color:#7D9599;letter-spacing:.06em}
+  table.res{width:100%;border-collapse:collapse;font-size:14.5px}
+  table.res th,table.res td{padding:11px 16px;text-align:right;border-top:1px solid #22414A}
+  table.res th{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7D9599;font-weight:400;border-top:0}
+  table.res td:first-child,table.res th:first-child{text-align:left;color:#D3E0DE}
+  table.res .old{color:#8AA0A3;font-family:"IBM Plex Mono"}
+  table.res .new{color:var(--verdigris-bright);font-family:"IBM Plex Mono";font-weight:500}
+  .board-foot{padding:13px 16px;border-top:1px solid #2A484F;font-size:13px;color:#93A8A9}
+
+  /* herramientas */
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px 34px}
+  .tools h4{font-family:"IBM Plex Mono";font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--verdigris);margin:0 0 10px;font-weight:500}
+  .tools p{margin:0;font-size:15.5px;line-height:1.75}
+  .tools .soft{color:var(--muted)}
+
+  /* contacto */
+  .contact{background:var(--deep);color:#EAF0EE;padding:78px 0}
+  .contact h2{font-size:clamp(28px,4vw,42px);font-weight:800;color:#F3F7F5;max-width:16ch}
+  .contact p{color:#C3D2D1;max-width:52ch;margin:18px 0 30px}
+  .links{display:flex;flex-wrap:wrap;gap:12px 28px;font-family:"IBM Plex Mono";font-size:14.5px}
+  .links a{color:#DCE8E6;text-decoration:none;border-bottom:1px solid #3A5158;padding-bottom:2px}
+  .links a:hover{color:var(--verdigris-bright);border-color:var(--verdigris-bright)}
+  footer{padding:22px 0;font-family:"IBM Plex Mono";font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  :focus-visible{outline:2px solid var(--verdigris-bright);outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="wrap">
+    <div class="who">Joaquín González</div>
+    <nav>
+      <a href="#trabajo">Trabajo</a>
+      <a href="#motor">Motor</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#herramientas" class="hide-sm">Herramientas</a>
+      <a href="#contacto">Contacto</a>
+      <a href="CV_Joaquin_Gonzalez_ES.pdf" class="cv">CV</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Santiago de Chile · disponible de inmediato</div>
+      <h1>Joaquín<br>González</h1>
+      <div class="role">Desarrollador full-stack</div>
+      <p>Entré a Geodatos en práctica y me quedé como desarrollador. Salí con dos productos
+      funcionando en producción, uno de ellos construido de punta a punta: modelo de datos,
+      backend, interfaz, despliegue y DNS. Fuera del trabajo entreno un modelo que recomienda
+      drafts de League of Legends, y lo mido contra las decisiones de los profesionales.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="#trabajo">Ver lo que construí</a>
+        <a class="btn btn-ghost" href="CV_Joaquin_Gonzalez_ES.pdf">Descargar CV</a>
+      </div>
+    </div>
+
+    <div class="core" aria-label="Capas en las que trabajo">
+      <div class="core-head"><span>Donde trabajo</span><span>Capa</span></div>
+      <div class="layer" style="--band:#43B497">
+        <div class="depth mono">01</div>
+        <div><div class="name">Interfaz</div><div class="tech">React · Vite · Tailwind</div></div>
+      </div>
+      <div class="layer" style="--band:#2F8F79">
+        <div class="depth mono">02</div>
+        <div><div class="name">Servicios</div><div class="tech">Java · Spring Boot · APIs REST</div></div>
+      </div>
+      <div class="layer" style="--band:#D9A83F">
+        <div class="depth mono">03</div>
+        <div><div class="name">Datos</div><div class="tech">PostgreSQL · MySQL · Oracle · Flyway</div></div>
+      </div>
+      <div class="layer" style="--band:#A8763C">
+        <div class="depth mono">04</div>
+        <div><div class="name">Infraestructura</div><div class="tech">Docker · DigitalOcean · AWS · DNS</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="band" id="trabajo">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>En producción</h2>
+      <div class="note">Servicios Geológicos Geodatos, consultora de exploración geofísica con más de 40 años en el mercado. Enero a julio de 2026.</div>
+    </div>
+
+    <div class="job">
+      <div class="side">
+        <div class="co">Intranet interna</div>
+        <div class="meta">Desarrollador<br>Mar – Jul 2026<br>Proyecto en solitario</div>
+      </div>
+      <div>
+        <h3>Una intranet que la empresa sí usa</h3>
+        <p class="lede">La intranet anterior existía, pero era tan difícil de usar que casi nadie
+        entraba. La reemplacé por una que hoy se usa a diario, y la construí completa: base de
+        datos, backend, interfaz, despliegue y dominio.</p>
+        <ul class="facts">
+          <li><b>Spring Boot 3.5 con Java 17 y PostgreSQL 16</b>, interfaz en React 19 con React Query.</li>
+          <li><b>Control de acceso por roles</b>: la navegación se arma según los permisos de cada persona.</li>
+          <li>Siete módulos en operación: proyectos, recursos humanos, gestión documental, calidad, notificaciones y administración.</li>
+          <li><b>Esquema versionado con Flyway</b>, sin tocar la base a mano en producción.</li>
+          <li>Desplegada en <b>DigitalOcean desde cero</b>, con Docker y el DNS configurado en NIC Chile.</li>
+        </ul>
+        <div class="metrics">
+          <div class="metric"><div class="n">269</div><div class="l">archivos Java</div></div>
+          <div class="metric"><div class="n">54</div><div class="l">migraciones</div></div>
+          <div class="metric"><div class="n">7</div><div class="l">módulos</div></div>
+          <div class="metric"><div class="n">1</div><div class="l">desarrollador</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="side">
+        <div class="co">geodatos.cl</div>
+        <div class="meta">Práctica profesional<br>Ene – Mar 2026<br><a href="https://www.geodatos.cl" style="color:var(--verdigris)">Ver el sitio</a></div>
+      </div>
+      <div>
+        <h3>El sitio corporativo, con las manos en la seguridad</h3>
+        <p class="lede">Frontend en React sobre un backend en PHP. Recibe postulaciones con
+        currículum adjunto, así que el trabajo interesante no estuvo en las pantallas sino en
+        todo lo que pasa cuando alguien sube un archivo.</p>
+        <ul class="facts">
+          <li>React 19 con Vite y Tailwind; backend en <b>PHP 8.2</b> con Composer.</li>
+          <li><b>Validación de entrada, CSRF y control de frecuencia</b> en cada formulario.</li>
+          <li>Los archivos que suben los postulantes pasan por un <b>antivirus (ClamAV)</b> antes de guardarse.</li>
+          <li>Verificación de reCAPTCHA <b>en el servidor</b>, no solo en el navegador.</li>
+          <li>Contenerizado con Docker, y documentado en un manual técnico para quien lo mantenga después.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="engine" id="motor">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>El motor de drafts</h2>
+      <div class="note">Proyecto personal. Lo usa mi equipo de League of Legends para preparar partidas.</div>
+    </div>
+
+    <div class="split">
+      <div>
+        <p>En League of Legends competitivo, antes de jugar hay un draft: los dos equipos
+        eligen y prohíben campeones por turnos, y esas veinte decisiones condicionan la
+        partida. Construí un modelo que aprende qué composiciones ganan, y un planificador
+        que lo usa para recomendar la siguiente jugada.</p>
+        <p style="margin-top:16px">Es un modelo entrenado, no un asistente que le pregunta a
+        una IA. Regresión logística con regularización, escrita a mano, sobre datos que yo
+        mismo recolecté de las ligas profesionales.</p>
+
+        <ul class="problems">
+          <li>
+            <div class="q">El modelo podía hacer trampa sin que se notara</div>
+            <div class="a">Las partidas de una misma serie comparten información: quién va
+            ganando y qué campeones ya se usaron. Si el primer juego queda en entrenamiento y
+            el tercero en prueba, el modelo ya sabe cómo venía la serie. Cada serie va
+            completa a un lado o al otro, y hay una auditoría que verifica que no se filtre.</div>
+          </li>
+          <li>
+            <div class="q">Podía estar midiendo otra cosa</div>
+            <div class="a">Si un equipo bueno gana, no fue necesariamente por el draft. Cada
+            equipo entra con un rating previo como variable de control, calculado solo con
+            partidas anteriores a la que se está evaluando.</div>
+          </li>
+          <li>
+            <div class="q">Setecientas filas son pocas</div>
+            <div class="a">Con tan pocos datos el ruido inventa relaciones absurdas, como que
+            exponerse a un campeón que te anula la movilidad conviene. Cada coeficiente
+            declara el signo que puede tener, y si la evidencia empuja al revés se fija en
+            cero: la forma honesta de decir que no hay evidencia.</div>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="board">
+          <div class="board-head">
+            <div class="t">Contra la versión anterior</div>
+            <div class="s">97 series nunca vistas · 4.919 jugadas</div>
+          </div>
+          <table class="res">
+            <thead>
+              <tr><th>Acierto</th><th>Antes</th><th>Modelo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>La jugada exacta</td><td class="old">6,7%</td><td class="new">15,0%</td></tr>
+              <tr><td>Entre las 3 primeras</td><td class="old">22,4%</td><td class="new">33,0%</td></tr>
+              <tr><td>Entre las 5 primeras</td><td class="old">35,9%</td><td class="new">45,8%</td></tr>
+              <tr><td>Posición media (MRR)</td><td class="old">21,1</td><td class="new">30,1</td></tr>
+            </tbody>
+          </table>
+          <div class="board-foot">Predecir la jugada exacta de un profesional entre más de
+          cien campeones es difícil a propósito: es la prueba más dura que se me ocurrió.</div>
+        </div>
+
+        <p style="margin-top:24px;font-size:15px">También mido calibración, log-loss y Brier,
+        porque acertar no basta: un modelo que acierta pero está demasiado seguro de sí mismo
+        engaña a quien lo usa. Y tengo documentado dónde falla: el sorteo se concentra de más
+        en los campeones fuertes, 61 campeones distintos en las simulaciones contra 116 en las
+        partidas reales.</p>
+
+        <p style="margin-top:16px;font-size:15px;color:#93A8A9">Python para la recolección,
+        TypeScript para el modelo y la aplicación, PostgreSQL para los datos del equipo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="proyectos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Proyectos</h2>
+      <div class="note">El proyecto de título y una herramienta que escribí para mi propia búsqueda de trabajo.</div>
+    </div>
+    <div class="projects">
+
+      <article class="card">
+        <div class="tag">Proyecto de título · equipo de 3</div>
+        <h3>EventOut</h3>
+        <p>Plataforma para encontrar panoramas en Santiago: mapa, reseñas de la comunidad con
+        votos, favoritos y un panel de administración. Web, API y aplicación Android.</p>
+        <div class="why"><b>Lo que más aprendí:</b> el login es nativo en la app, pero el resto
+        es la web dentro de un WebView. Para que no te pidiera la contraseña dos veces, la app
+        guarda el token y lo inyecta en la sesión del navegador antes de mostrar la pantalla.</div>
+        <div class="stack">
+          <div>React 19</div><div>Spring Boot</div><div>MySQL</div><div>AWS EC2</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="tag">Personal · código abierto</div>
+        <h3>Buscador de empleos</h3>
+        <p>Consulta la API de GetOnBoard y ordena las ofertas según cuánto se parecen a mi
+        stack. Un match en el título pesa el doble que uno perdido entre los requisitos.</p>
+        <div class="why"><b>Por qué existe:</b> revisar el portal todos los días y comparar
+        cada oferta a mano era justo el tipo de tarea que no debería hacer una persona.
+        Sin dependencias, solo la librería estándar.</div>
+        <div class="stack">
+          <div>Python</div><div>API oficial</div><div>CSV</div><div>Sin dependencias</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="band" id="herramientas">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Herramientas</h2>
+      <div class="note">En negro lo que uso con soltura; en gris lo que he usado lo suficiente para no perderme.</div>
+    </div>
+    <div class="tools">
+      <div>
+        <h4>Backend</h4>
+        <p>Java, Spring Boot, Spring Security, APIs REST, PHP <span class="soft">· Kotlin</span></p>
+      </div>
+      <div>
+        <h4>Bases de datos</h4>
+        <p>PostgreSQL, MySQL, migraciones con Flyway, modelado <span class="soft">· Oracle y PL/SQL</span></p>
+      </div>
+      <div>
+        <h4>Frontend</h4>
+        <p>React, JavaScript, Tailwind, Vite <span class="soft">· Bootstrap</span></p>
+      </div>
+      <div>
+        <h4>Infraestructura</h4>
+        <p>Docker y Docker Compose, DigitalOcean, DNS, despliegue en producción <span class="soft">· AWS EC2, nginx</span></p>
+      </div>
+      <div>
+        <h4>Pruebas</h4>
+        <p>JUnit 5, Mockito, Vitest, Testing Library</p>
+      </div>
+      <div>
+        <h4>Forma de trabajo</h4>
+        <p>Git con ramas y pull requests, Scrum, Jira, documentación técnica</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="eyebrow">Disponible de inmediato</div>
+    <h2 style="margin-top:14px">Busco mi primer equipo grande</h2>
+    <p>Vengo de trabajar solo y de sacar cosas a producción por mi cuenta. Ahora quiero
+    entrar a un equipo donde revisen mi código y yo revise el de otros. Presencial, híbrido
+    o remoto.</p>
+    <div class="links">
+      <a href="mailto:joan.gonmir@gmail.com">joan.gonmir@gmail.com</a>
+      <a href="https://www.linkedin.com/in/joaquin-gonzalez-3836a5425">LinkedIn</a>
+      <a href="https://github.com/Waxopez">GitHub</a>
+      <a href="CV_Joaquin_Gonzalez_ES.pdf">CV en español</a>
+      <a href="CV_Joaquin_Gonzalez_EN.pdf">CV in English</a>
+    </div>
+    <footer>
+      <span>Titulado de Analista Programador, Duoc UC · 2026</span>
+      <span>Hecho a mano, sin framework</span>
+    </footer>
+  </div>
+</section>
+
+</body>
+</html>
